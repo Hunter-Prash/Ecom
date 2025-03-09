@@ -59,19 +59,7 @@ const Header = () => {
 
         </div>
       </div>
-      <ToastContainer
-            position="top-center"
-            autoClose={1000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover={false}
-            theme="dark"
-            transition={Bounce}
-          />
+      <ToastContainer/>
     </nav>
   );
 }
