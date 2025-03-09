@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useAuth } from '../context/context';
+import { toast, ToastContainer ,Bounce} from 'react-toastify';
 
 const Header = () => {
+  const { auth,setAuth } = useAuth(); //useAuth() returns an object { auth, setAuth }. We are destructuring the object to get the auth property. The auth property contains the user object if the user is authenticated, otherwise it is null.
+
+  const handleLogout = () => {
+
+    setAuth({ token: null, user: null });//immediately re renders components that depend on auth like navbar as it shows login/logout links based on the authentication state.
+    localStorage.removeItem('auth');
+    toast.success('Logged Out sucessfully');
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -26,18 +35,43 @@ const Header = () => {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/signup">Sign Up</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
+            {
+              auth?.user ? (//This syntax is called optional chaining (?.) in JavaScript.It means auth && auth.user. If auth is null or undefined, the expression will short-circuit and return null. If auth is not null or undefined, it will return auth.user.
+                <li className="nav-item">
+                  <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
+                  
+                </li>//on logging out redirect to homepage
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">Signup</Link>
+                  </li>
+                </>
+              )
+            }
             <li className="nav-item">
               <Link className="nav-link" to="/cart">Cart</Link>
             </li>
           </ul>
+
         </div>
       </div>
+      <ToastContainer
+            position="top-center"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover={false}
+            theme="dark"
+            transition={Bounce}
+          />
     </nav>
   );
 }

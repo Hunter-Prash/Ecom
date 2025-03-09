@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/context.jsx';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer ,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const {auth, setAuth} = useAuth();  
+    const {auth,setAuth} = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,18 +18,42 @@ const Login = () => {
 
            
             if (!data?.token || !data?.user) {
-                throw new Error('Invalid response from server');
+               // throw new Error('Invalid response from server');
+               toast.error('🦄 Wow so easy!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
             }
 
            
-            toast.success("Login successful!");
+            toast.success('Login success', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
             console.log(data)
-            // Set authentication state
-            //setAuth({ token: data.token, user: data.user });
-
+           
+            // Save authentication data to local storage
             localStorage.setItem('auth', JSON.stringify({ token: data.token, user: data.user }));
-
             
+             // Set authentication state
+            setAuth({ token: data.token, user: data.user });//React Re-renders Immediately
+           // When you call setAuth(), React re-renders components that depend on auth.(In this case, the Header component depends on auth as it shows login/logout links based on the authentication state.)
+            //This ensures that the UI updates immediately based on the new authentication state.
+            // Redirect to home page
             setTimeout(() => {
                 navigate('/');
             }, 1000); 
@@ -66,8 +90,26 @@ const Login = () => {
                         required 
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <div>
+                     <button type="submit" className="btn btn-primary">Submit</button>
+                    
+                </div>
+                
+
             </form>
+            <ToastContainer
+                    position="top-center"
+                    autoClose={1000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover={false}
+                    theme="dark"
+                    transition={Bounce}
+                />
         </div>
     );
 };

@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedAuth = localStorage.getItem("auth");
     if (storedAuth) {
-      setAuth(JSON.parse(storedAuth)); 
+      setAuth(JSON.parse(storedAuth)); //converting string to javascript object
     }
   }, []);
 
