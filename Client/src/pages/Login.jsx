@@ -53,6 +53,7 @@ const Login = () => {
             setAuth({ token: data.token, user: data.user });//React Re-renders Immediately
            // When you call setAuth(), React re-renders components that depend on auth.(In this case, the Header component depends on auth as it shows login/logout links based on the authentication state.)
             //This ensures that the UI updates immediately based on the new authentication state.
+            
             // Redirect to home page
             setTimeout(() => {
                 navigate('/');
