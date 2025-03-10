@@ -8,9 +8,9 @@ const AuthProvider = ({ children }) => {
   
   // Retrieve auth from local storage on initial render when the component mounts
   useEffect(() => {
-    const storedAuth = localStorage.getItem("auth");
+    const storedAuth = localStorage.getItem("auth");//auth contains user and token.It is an object
     if (storedAuth) {
-      setAuth(JSON.parse(storedAuth));
+      setAuth(JSON.parse(storedAuth));//converts string which is stored in local storage to JSON object
     }
     setLoading(false); // Set loading to false after retrieving auth
   }, []);
