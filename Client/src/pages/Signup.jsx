@@ -10,7 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleSubmit = async (e) => {
@@ -22,6 +22,7 @@ const Signup = () => {
         password: password,
         phone: phone,
         address: address,
+        answer: answer
       });
       console.log(response.data);
       // Show success toast message
@@ -116,6 +117,21 @@ const Signup = () => {
             className="form-control"
             id="address"
             placeholder="Your Address"
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="answer" className="form-label">
+            Security question
+          </label>
+          <input
+            type="text"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            className="form-control"
+            id="answer"
+            placeholder="What is your best friend's name?"
             required
           />
         </div>

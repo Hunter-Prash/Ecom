@@ -1,0 +1,9 @@
+FORGOT PASSWORD
+
+1) prompt user to give security question answer and new password
+
+
+2)validate in db 
+
+
+3)if ok then save else return error 

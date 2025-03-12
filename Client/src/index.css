@@ -197,6 +197,26 @@
   color: #343a40;
 }
 
+
+/* Forgot Password Button Styling */
+.btn-forgot-password {
+  width: 100%;
+  padding: 10px;
+  background-color: #33bbd9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #343a40; 
+  font-weight: bold;
+  margin-top: 10px; 
+  transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.btn-forgot-password:hover {
+  background-color: #034197; 
+}
+
+
 .form-label {
   color: #6c757d;
 }
@@ -250,6 +270,7 @@
   border: 1px solid #ced4da;
   border-radius: 4px;
 }
+
 
 .btn-primary {
   width: 100%;

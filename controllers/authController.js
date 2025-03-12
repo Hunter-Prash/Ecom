@@ -10,7 +10,7 @@ dotenv.config();
 //POST /api/v1/auth/register
 export const registerController = async (req, res) => {
     try{
-        const {name,email,password,phone,address,role}=req.body;
+        const {name,email,password,phone,address,answer,role}=req.body;
         
         const exisitingUser=await userModel.findOne({email:email});
         if(exisitingUser){
@@ -24,11 +24,13 @@ export const registerController = async (req, res) => {
         password:newPassword,
         phone,
         address,
+        answer,
         role
     })
     await newUser.save();
     res.status(201).json({'message':'User registered successfully'});
     }catch(err){
+        console.log(err);
         res.status(500).json({'message':'Internal server error'});
     }
     
@@ -74,7 +76,33 @@ export const loginController = async (req, res) => {
     }
 }
 
-//test controller for protected route
+//FORGOT PASSWORD CONTROLLER
+//POST /api/v1/auth/forgotpassword
+//we use security answers to reset password
+export const forgotPasswordController=async(req,res)=>{
+    try{
+        const {email,answer,newPassword}=req.body
+        if(!email || !answer || !newPassword){
+            return res.status(400).json({message:'Please enter all fields'});
+        }
+
+        const user=await userModel.findOne({email:email,answer:answer});
+        if(!user){
+            return res.status(400).json({message:'Invalid credentials'});
+        }
+        const temp=await bcrypt.hash(newPassword,10);
+        user.password=temp;
+        await user.save();
+        res.status(200).json({message:'Password reset successfully'});
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({message:'Internal server error'});
+    }
+}
+
+
+//test controller for protected route in postman
 export const testController = async (req, res) => {
     res.send('Protected route');
 }

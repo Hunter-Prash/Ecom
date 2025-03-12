@@ -9,8 +9,10 @@ import Footer from './components/Footer.jsx';
 import Login from './pages/Login.jsx';
 import Header from './components/Header.jsx';
 import Signup from './pages/Signup.jsx';
+
 import Dashboard from './pages/User/Dashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import Forgot from './pages/Forgot.jsx';
 
 function App() {
   return (
@@ -25,12 +27,13 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/dashboard"
-          element={
+          element={//ProtectedRoute is a custom component that checks if the user is authenticated before rendering the Dashboard component. If the user is not authenticated, the user is redirected to the login page.Dashboard is inside the ProtectedRoute component which is its child.Children are rendered only if the parent component renders them.Sometimes the opposite is true, where the parent component is rendered only if the child component is rendered.
             <ProtectedRoute>
-              <Dashboard />
+              <Dashboard />    
             </ProtectedRoute>
           }
         />
+        <Route path="/forgotpassword" element={<Forgot/>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
