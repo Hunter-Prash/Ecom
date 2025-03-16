@@ -13,6 +13,9 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
+  if(auth?.user?.role!==1){
+    return <Navigate to="/dashboard" />;
+  }
   return children;
 };
 

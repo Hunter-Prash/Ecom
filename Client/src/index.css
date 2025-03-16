@@ -284,3 +284,40 @@
 .btn-primary:hover {
   background-color: #0056b3;
 }
+
+/* Admin Dashboard Styling */
+.admin-dashboard {
+  margin-left: 0px;
+  padding: 20px;
+  max-width: 500px;
+  display: flex;
+  gap: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+ 
+}
+
+.nav-links-group {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link-item {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link-item:hover {
+  background-color: #0056b3;
+}
+
+.nav-link-item.active {
+  background-color: #0056b3;
+}

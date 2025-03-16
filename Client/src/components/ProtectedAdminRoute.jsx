@@ -13,7 +13,7 @@ const ProtectedAdminRoute = ({ children }) => {
     return <Navigate to="/login" />;
   } 
   
-  if (auth?.user?.role !== 1) {
+  if (auth?.user?.role !== 1) {//if not admin redirect to user dashboard
     return <Navigate to="/dashboard" />;
   }
 
