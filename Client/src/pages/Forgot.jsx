@@ -80,14 +80,14 @@ const Forgot = () => {
                         onChange={(e) => setAnswer(e.target.value)}
                         className="form-control"
                         id="answer"
-                        placeholder="Your Answer"
+                        placeholder="Your best friends' name"
                         required
                     />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="newpassword" className="form-label">
-                        Password
+                       New Password
                     </label>
                     <input
                         type="password"
@@ -95,7 +95,7 @@ const Forgot = () => {
                         onChange={(e) => setNewPassword(e.target.value)} // Change password to newPassword
                         className="form-control"
                         id="newpassword"
-                        placeholder="Your Password"
+                        placeholder="Type new Password"
                         required
                     />
                 </div>

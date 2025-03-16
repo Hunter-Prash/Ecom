@@ -1,9 +1,7 @@
-FORGOT PASSWORD
+ROLE BASED AUTH
 
-1) prompt user to give security question answer and new password
+1) whenever admin logins in it should show admin page
+2)whenver user logs in it should show dashboadrd page
 
-
-2)validate in db 
-
-
-3)if ok then save else return error 
+PROBLEM ->
+when i login the data gets sent to the server and the server redirects to homepage with the user details

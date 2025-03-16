@@ -10,9 +10,13 @@ import Login from './pages/Login.jsx';
 import Header from './components/Header.jsx';
 import Signup from './pages/Signup.jsx';
 
-import Dashboard from './pages/User/Dashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import Dashboard from './pages/User/Dashboard.jsx';
+
 import Forgot from './pages/Forgot.jsx';
+
+import ProtectedAdminRoute from './components/ProtectedAdminRoute.jsx';
+import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
 
 function App() {
   return (
@@ -25,6 +29,13 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
+        <Route path='/admin' element={//ProtectedAdminRoute is a custom component that checks if the user is authenticated and has admin privileges before rendering the AdminDashboard component. If the user is not authenticated or does not have admin privileges, the user is redirected to the login page.AdminDashboard is inside the ProtectedAdminRoute component which is its child.Children are rendered only if the parent component renders them.Sometimes the opposite is true, where the parent component is rendered only if the child component is rendered.
+          <ProtectedAdminRoute>
+            <AdminDashboard/>
+          </ProtectedAdminRoute>
+        }></Route>
+
         <Route
           path="/dashboard"
           element={//ProtectedRoute is a custom component that checks if the user is authenticated before rendering the Dashboard component. If the user is not authenticated, the user is redirected to the login page.Dashboard is inside the ProtectedRoute component which is its child.Children are rendered only if the parent component renders them.Sometimes the opposite is true, where the parent component is rendered only if the child component is rendered.
@@ -33,6 +44,10 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+
+
+
         <Route path="/forgotpassword" element={<Forgot/>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

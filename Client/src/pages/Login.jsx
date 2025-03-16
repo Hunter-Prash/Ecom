@@ -54,10 +54,15 @@ const Login = () => {
            // When you call setAuth(), React re-renders components that depend on auth.(In this case, the Header component depends on auth as it shows login/logout links based on the authentication state.)
             //This ensures that the UI updates immediately based on the new authentication state.
             
-            // Redirect to home page
+            // Redirect based on ROLE BASED AUTHTHENTICATION
             setTimeout(() => {
-                navigate('/');
-            }, 1000); 
+                if (data.user.role === 1) {
+                    navigate('/admin'); // Redirect admin to admin dashboard
+                } else {
+                    navigate('/dashboard'); // Redirect normal user to user dashboard
+                }
+            }, 1000);
+            
 
         } catch (err) {
             console.error(err);
