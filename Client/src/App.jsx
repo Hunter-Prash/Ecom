@@ -17,6 +17,11 @@ import Forgot from './pages/Forgot.jsx';
 
 import ProtectedAdminRoute from './components/ProtectedAdminRoute.jsx';
 import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
+import CreateCategory from './pages/Admin/CreateCategory.jsx';
+import CreateProduct from './pages/Admin/CreateProduct.jsx';
+import Users from './pages/Admin/Users.jsx';
+import Profile from './pages/User/Profile.jsx';
+import Orders from './pages/User/Orders.jsx';
 
 function App() {
   return (
@@ -49,6 +54,17 @@ function App() {
 
 
         <Route path="/forgotpassword" element={<Forgot/>} />
+
+        {/* Admin pages*/}
+        <Route path='/dashboard/admin/create-category' element={<CreateCategory/>}></Route>
+        <Route path='/dashboard/admin/create-product' element={<CreateProduct/>}></Route>
+        <Route path='/dashboard/admin/create-users' element={<Users/>}></Route>
+
+        {/* User pages */}
+        <Route path='/dashboard/user/profile' element={<Profile/>}></Route>
+        <Route path='/dashboard/user/orders' element={<Orders/>}></Route>
+
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

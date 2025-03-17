@@ -289,7 +289,7 @@
 .admin-dashboard {
   margin-left: 0px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 600px;
   display: flex;
   gap: 10px;
   background-color: #ffffff;
@@ -299,6 +299,66 @@
 
 .nav-links-group {
   width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link-item {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link-item:hover {
+  background-color: #0056b3;
+}
+
+.nav-link-item.active {
+  background-color: #0056b3;
+}
+
+/* Dashboard Styling */
+.dashboard-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-info {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info h4 {
+  color: #333;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.nav-links-group {
   display: flex;
   flex-direction: column;
   gap: 10px;
