@@ -35,7 +35,7 @@ export const categoryController=async(req,res)=>{
 export const updateController=async(req,res)=>{
     try{
         const {name}=req.body
-        const updatedCategory=await categoryModel.findByIdAndUpdate(req.params.id,{name:name,slug:slugify(name)},{new:true})
+        const updatedCategory=await categoryModel.findByIdAndUpdate(req.params.id,{name:name,slug:slugify(name)},{new:true})//we use new:true to get the updated data in mongodb else it will return the old data. if we dont use new:true then mongodb stores the updated data in updatedCategory but it returns the old data
         res.status(200).json({message:'Category updated',updatedCategory})
     }catch(err){
         console.log(err)
@@ -63,5 +63,16 @@ export const getSingleCategory=async(req,res)=>{
     }catch(err){
         console.log(err)
         res.status(400).json({error:'error fetching category'})   
+    }
+}
+
+//DELETE CATEGORY
+export const deleteController=async(req,res)=>{
+    try{
+        await categoryModel.findByIdAndDelete(req.params.id)
+        res.status(200).json({message:'Category deleted'})
+    }catch(err){
+        console.error(err)
+        res.status(400).json({error:'Category not deleted'})
     }
 }

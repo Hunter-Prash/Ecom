@@ -1,8 +1,6 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import { Router } from 'express';
 import { isAdmin, requiredLogin } from '../middlewares/authMiddleware.js';
-import { categoryController,getCategories,updateController,getSingleCategory } from '../controllers/categoryController.js';
+import { categoryController,getCategories,updateController,getSingleCategory ,deleteController} from '../controllers/categoryController.js';
 
 const router=express.Router();
 
@@ -13,9 +11,12 @@ router.post('/create',requiredLogin,isAdmin,categoryController)
 router.put('/update/:id',requiredLogin,isAdmin,updateController)
 
 //get all categories route
-router.get('/getAllCategories',getCategories)
+router.get('/getAllCategories',requiredLogin,isAdmin,getCategories)
 
 //get single category route
-router.get('/getSingleCategory/:id',getSingleCategory)
+router.get('/getSingleCategory/:id',requiredLogin,isAdmin,getSingleCategory)
+
+//delete category route
+router.delete('/delete/:id',requiredLogin,isAdmin,deleteController)
 
 export default router;

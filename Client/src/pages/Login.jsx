@@ -19,7 +19,7 @@ const Login = () => {
            
             if (!data?.token || !data?.user) {
                // throw new Error('Invalid response from server');
-               toast.error('🦄 Wow so easy!', {
+               toast.error('Error!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
