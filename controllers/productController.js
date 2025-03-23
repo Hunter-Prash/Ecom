@@ -3,6 +3,8 @@ import fs from 'fs';
 import formidable from 'formidable';
 import { productModel } from '../models/productModel.js';
 import slugify from 'slugify';
+
+//CREATE PRODUCT
 export const createProduct=async (req,res)=>{
     try{
         //THIS IS DONE VIA FORMIDABLE PACKAGE 
@@ -42,5 +44,32 @@ export const createProduct=async (req,res)=>{
     }catch(err){
         console.log(err)
         res.status(400).json({error:'Product not created'})
+    }
+}
+
+//GET PRODUCTS
+export const getProducts=async(req,res)=>{
+    try{
+        const result=await productModel.find({}).populate('category').select("-photo").limit(10).sort({createdAt:-1})
+        const products=result.map(it=>it.name)
+        
+        res.status(200).json({message:'Products fetched',products})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Products not found'})
+    }
+}
+
+//GET A SINGLE PRODUCT
+export const getSingleProduct=async (req,res)=>{
+    try{
+        const product=await productModel.findOne({slug:req.params.slug}).populate('category').select("-photo")
+        if(!product){
+            return res.status(400).json({error:'Product not found'})
+        }
+        res.status(200).json({message:'Product fetched',product})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Product not found'})
     }
 }
