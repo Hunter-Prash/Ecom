@@ -381,3 +381,66 @@
 .nav-link-item.active {
   background-color: #0056b3;
 }
+
+
+/* Container styles */
+.category-container {
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Title styles */
+.category-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* List styles */
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* List item styles */
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-item:hover {
+  transform: scale(1.02);
+}
+
+/* Category name styles */
+.category-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* Edit button styles */
+.edit-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}

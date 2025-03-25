@@ -11,7 +11,7 @@ router.post('/create',requiredLogin,isAdmin,categoryController)
 router.put('/update/:id',requiredLogin,isAdmin,updateController)
 
 //get all categories route
-router.get('/getAllCategories',requiredLogin,isAdmin,getCategories)
+router.get('/getAllCategories',requiredLogin,getCategories)
 
 //get single category route
 router.get('/getSingleCategory/:id',requiredLogin,isAdmin,getSingleCategory)

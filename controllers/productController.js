@@ -3,6 +3,7 @@ import fs from 'fs';
 import formidable from 'formidable';
 import { productModel } from '../models/productModel.js';
 import slugify from 'slugify';
+import e from 'express';
 
 //CREATE PRODUCT
 export const createProduct=async (req,res)=>{
@@ -71,5 +72,63 @@ export const getSingleProduct=async (req,res)=>{
     }catch(err){
         console.log(err)
         res.status(400).json({error:'Product not found'})
+    }
+}
+
+//GET PHOTO
+export const getPhoto=async(req,res)=>{
+    try{
+        const result=req.params.pid
+        const productphoto=await productModel.findById(result).select('photo')// Find the product by ID and select only the photo field
+        if(productphoto.photo.data){
+            res.set('Content-Type',productphoto.photo.contentType)//Setting the Content-Type header to the photo's content type is important because it informs the client (e.g., a web browser or a mobile app) about the type of data being sent in the response. This allows the client to correctly interpret and display the data.
+
+            res.status(200).send(productphoto.photo.data)
+        }
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Photo not found'})
+    }
+}
+
+export const deleteProduct=async(req,res)=>{
+    try{
+        await productModel.findByIdAndDelete(req.params.pid)
+        res.status(200).json({message:'Product deleted'})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Product not deleted'})
+    }
+}
+
+export const updateProduct=async(req,res)=>{
+    try{
+        const {name,description,price,category,quantity}=req.fields;
+        const {photo}=req.files;
+
+        //SERVER VALIDATION
+        if(!name || !description || !price || !category || !quantity){
+            return res.status(400).json({error:'All fields are required'})
+        }
+        if(!photo || photo.size>1000000){
+            return res.status(400).json({error:'Image is required and should be less than 1mb'})
+        }
+
+        const updatedProduct=await productModel.findByIdAndUpdate(req.params.pid,{
+            name,
+            slug:slugify(name),
+            description,
+            price,
+            category,
+            quantity,
+            photo:{
+                data:fs.readFileSync(photo.path),
+                contentType:photo.type
+            },
+        },{new:true})
+        res.status(200).json({message:'Product updated',updatedProduct})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Product not updated'})
     }
 }

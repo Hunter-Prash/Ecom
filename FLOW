@@ -1,7 +1,5 @@
-ROLE BASED AUTH
 
-1) whenever admin logins in it should show admin page
-2)whenver user logs in it should show dashboadrd page
+EDIT BUTTON in create category
 
-PROBLEM ->
-when i login the data gets sent to the server and the server redirects to homepage with the user details
+when the user clicks it go to a new form page
+send the form data t the create category route

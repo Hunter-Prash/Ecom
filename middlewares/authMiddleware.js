@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 //protected route middleware
 export const requiredLogin=async (req,res,next)=>{
     try{
-        const token=req.headers['authorization'].split(' ')[1];
+        const token=req.headers['authorization'];
         const decoded=JWT.verify(token,process.env.JWT_SECRET);
         req.user=decoded;
         
