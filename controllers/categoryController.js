@@ -47,8 +47,8 @@ export const updateController=async(req,res)=>{
 export const getCategories=async(req,res)=>{
     try{
         const result=await categoryModel.find({})
-        const categories = result.map(it => it.name);
-        res.status(200).json({message: 'Categories fetched', categories});
+        //const categories = result.map(it => it.name);
+        res.status(200).json({message: 'Categories fetched',result});
     }catch(err){
         console.log(err)
         res.status(400).json({error:'error fetching categories'})   
