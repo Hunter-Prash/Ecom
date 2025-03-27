@@ -23,6 +23,7 @@ const CreateCategory = () => {
       toast.success('Category created successfully!');
       setCategoryName(''); // Clear the input field after successful creation
       window.location.reload(); // Reload the page to fetch the updated list of categories
+      
     } catch (error) {
       toast.error('Error creating category!');
       console.error(error);
@@ -40,7 +41,7 @@ const CreateCategory = () => {
       console.log(response.data);
       toast.success('Category deleted successfully!');
       // Update the categories list without reloading the page
-      window.location.reload(); // Reload the page to fetch the updated list of categories
+      setCategories(categories.filter((cat) => cat._id !== id)); 
     } catch (error) {
       toast.error('Error deleting category!');
       console.error(error);
