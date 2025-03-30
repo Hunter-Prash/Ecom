@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,8 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState(false);
   const [photo, setPhoto] = useState(null); // State to track the uploaded photo
 
+  const navigate = useNavigate();
+  
   // Get all categories
   useEffect(() => {
     const fetchCategories = async () => {
@@ -60,6 +63,14 @@ const CreateProduct = () => {
 
       console.log(response.data);
       toast.success('Product created successfully!');
+
+      //navigate to products page after successful creation
+      
+      setTimeout(() => {
+        navigate('/dashboard/admin/products'); // Redirect to the products page after successful creation
+      }, 1000);
+     
+
     } catch (err) {
       console.error(err);
       toast.error('Error creating product!');
@@ -153,6 +164,7 @@ const CreateProduct = () => {
         </div>
 
         <button type="submit">Create Product</button>
+        <button className='mc' onClick={() => { navigate('/dashboard/admin/products'); }}>Go to product Page</button>
       </form>
     </div>
   );

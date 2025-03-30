@@ -52,9 +52,9 @@ export const createProduct=async (req,res)=>{
 export const getProducts=async(req,res)=>{
     try{
         const result=await productModel.find({}).populate('category').select("-photo").limit(10).sort({createdAt:-1})
-        const products=result.map(it=>it.name)
+        //const products=result.map(it=>it.name)
         
-        res.status(200).json({message:'Products fetched',products})
+        res.status(200).json({message:'Products fetched',result})
     }catch(err){
         console.log(err)
         res.status(400).json({error:'Products not found'})

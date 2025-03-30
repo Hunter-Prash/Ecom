@@ -518,6 +518,10 @@
   font-family: 'Arial', sans-serif;
 }
 
+.mc{
+  margin: 2px;
+  padding: 2px;
+}
 /* Heading */
 .create-product-container h2 {
   text-align: center;
@@ -580,3 +584,80 @@ button:hover {
 }
 
 
+/* General Styles */
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Product List */
+.product-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Product Item */
+.product-item {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 12px 0;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.product-item:hover {
+  transform: scale(1.02);
+}
+
+/* Product Details */
+.product-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.product-details p {
+  margin: 4px 0;
+  color: #666;
+}
+
+/* Buttons */
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.update-btn, .delete-btn {
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.update-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}

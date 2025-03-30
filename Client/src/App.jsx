@@ -22,6 +22,7 @@ import CreateProduct from './pages/Admin/CreateProduct.jsx';
 import Users from './pages/Admin/Users.jsx';
 import Profile from './pages/User/Profile.jsx';
 import Orders from './pages/User/Orders.jsx';
+import Products from './pages/Admin/Products.jsx';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path='/dashboard/admin/create-category' element={<CreateCategory/>}></Route>
         <Route path='/dashboard/admin/create-product' element={<CreateProduct/>}></Route>
         <Route path='/dashboard/admin/create-users' element={<Users/>}></Route>
+        <Route path='/dashboard/admin/products' element={<Products/>}></Route>
 
         {/* User pages */}
         <Route path='/dashboard/user/profile' element={<Profile/>}></Route>
