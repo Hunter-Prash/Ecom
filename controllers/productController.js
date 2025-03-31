@@ -64,7 +64,7 @@ export const getProducts=async(req,res)=>{
 //GET A SINGLE PRODUCT
 export const getSingleProduct=async (req,res)=>{
     try{
-        const product=await productModel.findOne({slug:req.params.slug}).populate('category').select("-photo")
+        const product=await productModel.findById(req.params.pid).populate('category').select("-photo")
         if(!product){
             return res.status(400).json({error:'Product not found'})
         }

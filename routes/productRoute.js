@@ -6,7 +6,7 @@ const router=express.Router();
 
 router.post('/create',requiredLogin,isAdmin,formidable(),createProduct)
 router.get('/get',getProducts)
-router.get('/getSingleProd/:slug',getSingleProduct)
+router.get('/getSingleProd/:pid',getSingleProduct)
 
 //get photo of product
 router.get('/photo/:pid',getPhoto)//pid is product id

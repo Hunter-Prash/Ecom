@@ -661,3 +661,61 @@ h2 {
 .delete-btn:hover {
   background-color: #d32f2f;
 }
+
+
+
+/* Single Product Page Styles */
+.single-product-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.single-product-container h2 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.single-product-container h3 {
+  color: #007bff;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.single-product-container p {
+  color: #555;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.single-product-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 2px solid #ddd;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}

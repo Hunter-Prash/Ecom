@@ -23,6 +23,7 @@ import Users from './pages/Admin/Users.jsx';
 import Profile from './pages/User/Profile.jsx';
 import Orders from './pages/User/Orders.jsx';
 import Products from './pages/Admin/Products.jsx';
+import SingleProduct from './pages/Admin/SingleProduct.jsx';
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
         <Route path='/dashboard/admin/create-product' element={<CreateProduct/>}></Route>
         <Route path='/dashboard/admin/create-users' element={<Users/>}></Route>
         <Route path='/dashboard/admin/products' element={<Products/>}></Route>
-
+        <Route path='/dashboard/admin/singleProduct' element={<SingleProduct/>}></Route>
         {/* User pages */}
         <Route path='/dashboard/user/profile' element={<Profile/>}></Route>
         <Route path='/dashboard/user/orders' element={<Orders/>}></Route>
