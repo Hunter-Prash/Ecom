@@ -1,5 +1,6 @@
+PRODUCT CARD clicks
+GO TO THE PRODUCT DETAIL PAGE WHEN LOGGED IN...
 
-EDIT BUTTON in create category
+ADD TO CART FUNC
 
-when the user clicks it go to a new form page
-send the form data t the create category route
+FILTER PRODUCT FUNC

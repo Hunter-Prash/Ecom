@@ -5,14 +5,14 @@ import formidable from 'express-formidable';
 const router=express.Router();
 
 router.post('/create',requiredLogin,isAdmin,formidable(),createProduct)
-router.get('/get',getProducts)
-router.get('/getSingleProd/:pid',getSingleProduct)
+router.get('/get',requiredLogin,getProducts)
+router.get('/getSingleProd/:pid',requiredLogin,getSingleProduct)
 
 //get photo of product
 router.get('/photo/:pid',getPhoto)//pid is product id
 
 //delete product
-router.delete('/delete/:pid', deleteProduct)//pid is product id
+router.delete('/delete/:pid',requiredLogin,isAdmin, deleteProduct)//pid is product id
 
 //update product
 router.put('/update/:pid',requiredLogin,isAdmin,formidable(),updateProduct)//pid is product id
