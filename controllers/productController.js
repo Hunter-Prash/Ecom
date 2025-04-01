@@ -51,7 +51,7 @@ export const createProduct=async (req,res)=>{
 //GET PRODUCTS
 export const getProducts=async(req,res)=>{
     try{
-        const result=await productModel.find({}).populate('category').select("-photo").limit(10).sort({createdAt:-1})
+        const result=await productModel.find({}).populate('category').select("-photo").sort({createdAt:-1})
         //const products=result.map(it=>it.name)
         
         res.status(200).json({message:'Products fetched',result})
@@ -130,5 +130,31 @@ export const updateProduct=async(req,res)=>{
     }catch(err){
         console.log(err)
         res.status(400).json({error:'Product not updated'})
+    }
+}
+
+//GET PRODUCT COUNT
+export const getProductCount=async(req,res)=>{
+    try{
+        const total=await productModel.find({}).estimatedDocumentCount()
+        res.status(200).json({message:'Product count fetched',total})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Product count not found'})
+    }
+}
+
+//GET PRODUCTS PER PAGE
+export const getProductsPerPage=async(req,res)=>{
+    try{
+        const perpage=5
+        const page=req.params.page ? req.params.page : 1
+        const skip=(page-1)*perpage
+        const products=await productModel.find({}).select("-photo").limit(perpage).skip(skip).sort({createdAt:-1})
+        res.status(200).json({products})
+
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Products not found'})
     }
 }
