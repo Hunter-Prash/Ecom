@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/context';
 import { toast, ToastContainer ,Bounce} from 'react-toastify';
+import SearchInput from './SearchInput';
 
 const Header = () => {
   const { auth,setAuth } = useAuth(); //useAuth() returns an object { auth, setAuth }. We are destructuring the object to get the auth property. The auth property contains the user object if the user is authenticated, otherwise it is null.
@@ -34,6 +35,7 @@ const Header = () => {
               <Link className="nav-link" to="/policy">Policy</Link>
             </li>
           </ul>
+          <SearchInput/>
           <ul className="navbar-nav ms-auto">
             {
               auth?.user ? (//This syntax is called optional chaining (?.) in JavaScript.It means auth && auth.user. If auth is null or undefined, the expression will short-circuit and return null. If auth is not null or undefined, it will return auth.user.

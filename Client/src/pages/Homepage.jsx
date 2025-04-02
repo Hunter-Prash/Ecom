@@ -184,7 +184,7 @@ const loadHandler = async () => {
             </div>
           </div>
           <div>
-            <button className="btn btn-primary" onClick={loadHandler}>Load more</button>
+            <button className="btn2" onClick={loadHandler}>Load more</button>
           </div>
         </>
       ) : (

@@ -158,3 +158,20 @@ export const getProductsPerPage=async(req,res)=>{
         res.status(400).json({error:'Products not found'})
     }
 }
+
+//SEARCH PRODUCT
+export const searchProduct=async(req,res)=>{
+    const {keyword}=req.params
+    try{
+        const result=await productModel.find({
+            $or:[
+                {name:{$regex:keyword,$options:'i'}},
+                {description:{$regex:keyword,$options:'i'}}
+            ]
+        }).select("-photo")
+        res.status(200).json({result})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error:'Products not found'})
+    }
+}

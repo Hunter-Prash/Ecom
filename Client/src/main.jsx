@@ -4,14 +4,19 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/context.jsx'
+import { SearchProvider } from './context/searchContext.jsx'
 
 createRoot(document.getElementById('root')).render(
 
   <AuthProvider>
 
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <SearchProvider>
+
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+      
+    </SearchProvider>
 
   </AuthProvider>
 

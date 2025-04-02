@@ -2,7 +2,7 @@ import React, { use } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SingleProduct = () => {
-    const location = useLocation();//The useLocation hook is used in the SingleProduct component to access the state passed during navigation.
+    const location = useLocation();//The useLocation hook is used in the SingleProduct component to access the state passed during navigation from the Homepage component.
     const  product  = location.state.product // Access the passed product data
     const navigate=useNavigate()
 
