@@ -25,6 +25,7 @@ import Orders from './pages/User/Orders.jsx';
 import Products from './pages/Admin/Products.jsx';
 import SingleProduct from './pages/Admin/SingleProduct.jsx';
 import Search from './pages/Search.jsx';
+import Cart from './pages/Cart.jsx';
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/search" element={<Search />} />
-
+        <Route path='cart' element={<Cart/>}></Route>
         <Route path='/admin' element={//ProtectedAdminRoute is a custom component that checks if the user is authenticated and has admin privileges before rendering the AdminDashboard component. If the user is not authenticated or does not have admin privileges, the user is redirected to the login page.AdminDashboard is inside the ProtectedAdminRoute component which is its child.Children are rendered only if the parent component renders them.Sometimes the opposite is true, where the parent component is rendered only if the child component is rendered.
           <ProtectedAdminRoute>
             <AdminDashboard/>

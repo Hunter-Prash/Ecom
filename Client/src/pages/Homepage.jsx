@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/context.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/cartContext.jsx';
+import { toast } from 'react-toastify';
 
 const Homepage = () => {
   const { auth } = useAuth();
+  const {cart,setCart}=useCart();
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
@@ -130,6 +133,7 @@ const loadHandler = async () => {
   }
 };
 
+
   return (
     <div className="homepage">
       <h1>Welcome</h1>
@@ -176,7 +180,8 @@ const loadHandler = async () => {
                     src={`http://localhost:3000/api/v1/products/photo/${product._id}`}
                     alt={product.name}
                   />
-                  <button className="add-to-cart-btn" style={{ width: '120px' }}>
+                  <button className="add-to-cart-btn" style={{ width: '120px' }} onClick={()=>{setCart([...cart,product]);toast.success('Product added to cart');}}>
+                    {/* Add to Cart button */}
                     Add to Cart
                   </button>
                 </div>
