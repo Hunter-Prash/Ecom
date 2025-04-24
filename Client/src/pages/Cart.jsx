@@ -1,26 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useCart } from '../context/cartContext';
 
 const Cart = () => {
   const { cart, setCart } = useCart();
-  const [quantities, setQuantities] = useState([]);
-
-  useEffect(() => {
-    setQuantities(Array(cart.length).fill(1));
-  }, [cart]);
 
   const handleIncrement = (index) => {
-    const updatedQuantities = [...quantities];
-    updatedQuantities[index]++;
-    setQuantities(updatedQuantities);
+    const updatedCart = [...cart];
+    updatedCart[index].quantity = (updatedCart[index].quantity || 1) + 1;
+    setCart(updatedCart);
   };
 
   const handleDecrement = (index) => {
-    const updatedQuantities = [...quantities];
-    if (updatedQuantities[index] > 1) {
-      updatedQuantities[index]--;
-      setQuantities(updatedQuantities);
+    const updatedCart = [...cart];
+    if ((updatedCart[index].quantity || 1) > 1) {
+      updatedCart[index].quantity--;
+      setCart(updatedCart);
     }
+  };
+
+  const handleRemove = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    setCart(updatedCart);
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const quantity = item.quantity || 1;
+      return total + item.price * quantity;
+    }, 0);
   };
 
   return (
@@ -35,6 +43,7 @@ const Cart = () => {
                 <th>Price ($)</th>
                 <th style={{ width: '160px' }}>Quantity</th>
                 <th>Total ($)</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -44,26 +53,28 @@ const Cart = () => {
                   <td>${item.price}</td>
                   <td>
                     <div className="d-flex justify-content-center align-items-center gap-2">
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => handleDecrement(index)}
-                      >
-                        −
-                      </button>
-                      <span className="fw-bold">{quantities[index]}</span>
-                      <button
-                        className="btn btn-sm btn-success"
-                        onClick={() => handleIncrement(index)}
-                      >
-                        +
-                      </button>
+                      <button className="btn btn-sm btn-danger" onClick={() => handleDecrement(index)}>−</button>
+                      <span className="fw-bold">{item.quantity || 1}</span>
+                      <button className="btn btn-sm btn-success" onClick={() => handleIncrement(index)}>+</button>
                     </div>
                   </td>
-                  <td>${(item.price * quantities[index])}</td>
+                  <td>${(item.price * (item.quantity || 1)).toFixed(2)}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm btn-outline-danger px-2 py-1"
+                      style={{ whiteSpace: 'nowrap' }}
+                      onClick={() => handleRemove(index)}
+                    >
+                      🗑️ Remove
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="text-end fw-bold fs-5 me-2">
+            Total: ${calculateTotal().toFixed(2)}
+          </div>
         </div>
       ) : (
         <div className="container my-5 text-center">
